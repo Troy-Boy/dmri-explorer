@@ -28,7 +28,6 @@ Application::Application(const ArgumentParser& parser)
 ,mCursorPos(-1, -1)
 {
     initApplicationState(parser);
-    initialize();
 }
 
 Application::~Application()
@@ -38,8 +37,7 @@ Application::~Application()
     glfwTerminate();
 }
 
-/// initialize glad, glfw, imgui
-void Application::initialize()
+bool Application::Initialize()
 {
     // Init GLFW
     glfwInit();
@@ -47,7 +45,7 @@ void Application::initialize()
     if (!glfwInit())
     {
         std::cerr << "Failed to initialize GLFW" << std::endl;
-        return;
+        return false;
     }
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
@@ -55,6 +53,15 @@ void Application::initialize()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     mWindow = glfwCreateWindow(WIN_WIDTH, WIN_HEIGHT, mTitle.c_str(), NULL, NULL);
+    const char* description;
+    const int code = glfwGetError(&description);
+    if(code != GLFW_NO_ERROR)
+    {
+        std::cerr << "An error occured.\n" << description << std::endl;
+        glfwTerminate();
+        return false;
+    }
+
     glfwMakeContextCurrent(mWindow);
     glfwSetWindowUserPointer(mWindow, this);
     setWindowIcon();
@@ -70,7 +77,7 @@ void Application::initialize()
     {
         std::cerr << "Failed to initialize OpenGL context" << std::endl;
         glfwTerminate();
-        return;
+        return false;
     }
 
     // OpenGL render parameters
@@ -96,6 +103,8 @@ void Application::initialize()
 
     // Add SH field once the UI is drawn
     mScene->AddSHField();
+
+    return true;
 }
 
 void Application::setWindowIcon()

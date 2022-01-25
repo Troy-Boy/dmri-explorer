@@ -27,13 +27,13 @@ public:
     /// Destructor
     ~Application();
 
+    /// Initialize GLFW, OpenGL backend, Scene, UI, Camera, etc.
+    bool Initialize();
+
     /// Run the application. Handle inputs, render scene and UI.
     void Run();
 
 private:
-    /// Initialize GLFW, OpenGL backend, Scene, UI, Camera, etc.
-    void initialize();
-
     /// Render a frame one time.
     void renderFrame();
 

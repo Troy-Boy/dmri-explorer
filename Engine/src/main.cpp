@@ -11,8 +11,11 @@ int main(int argc, char** argv)
     if(parser.OK())
     {
         Slicer::Application app(parser);
-        app.Run();
-        return 0;
+        if(app.Initialize())
+        {
+            app.Run();
+            return 0;
+        }
     }
     return -1;
 }
