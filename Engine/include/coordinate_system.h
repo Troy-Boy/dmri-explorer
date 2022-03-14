@@ -28,6 +28,10 @@ public:
     /// \param[in] t Transform to be appplied.
     void ApplyTransform(const glm::mat4& t);
 
+    /// Apply a transform to a vector.
+    /// \param[in] v vector to be transformed.
+    void TransformVector(glm::vec4& v);
+
     /// Get composite transformation for expressing points in
     /// this coordinate system in World coordinates.
     /// \return Transformation matrix for current coordinate system

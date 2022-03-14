@@ -24,6 +24,11 @@ void CoordinateSystem::ApplyTransform(const glm::mat4& t)
     mTransformMatrix = t * mTransformMatrix;
 }
 
+void CoordinateSystem::TransformVector(glm::vec4& v)
+{
+    v = glm::inverse(mTransformMatrix) * v;
+}
+
 glm::mat4 CoordinateSystem::ToWorld() const
 {
     if(mParentCS != nullptr)
