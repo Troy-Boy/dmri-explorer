@@ -30,7 +30,7 @@ public:
 
     /// Apply a transform to a vector.
     /// \param[in] v vector to be transformed.
-    void TransformVector(glm::vec4& v);
+    void TransformVector(glm::vec4& v, bool inverse);
 
     /// Get composite transformation for expressing points in
     /// this coordinate system in World coordinates.
