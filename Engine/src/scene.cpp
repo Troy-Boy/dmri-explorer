@@ -31,6 +31,7 @@ void Scene::Render()
     }
 }
 
+// TODO: delete if not used
 void Scene::RotateCS(const glm::vec2& vec)
 {
     const float& rotationSpeed = mState->Window.RotationSpeed.Get();
@@ -41,6 +42,7 @@ void Scene::RotateCS(const glm::vec2& vec)
     mCoordinateSystem->ApplyTransform(transform);
 }
 
+// TODO: delete if not used
 void Scene::TranslateCS(const glm::vec2& vec)
 {
     const float& translationSpeed = mState->Window.TranslationSpeed.Get();
