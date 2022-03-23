@@ -150,6 +150,9 @@ struct Window
     /// Window height in pixels
     ApplicationParameter<int> Height;
 
+    /// Secondary viewport size ratio
+    ApplicationParameter<int> Ratio;
+
     /// Multiplier on cursor movement to control scene translation speed.
     ApplicationParameter<float> TranslationSpeed;
 
@@ -179,5 +182,8 @@ public:
 
     /// Parameter containing the fODF image object.
     ApplicationParameter<NiftiImageWrapper> FODFImage;
+
+    /// Parameter for magnifying mode control.
+    ApplicationParameter<bool> MagnifyingMode;
 };
 } // namespace Slicer
